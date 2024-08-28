@@ -53,7 +53,7 @@ android {
 cargo {
     module = "src/main/rust/rust-native" // Rust 工程路径
     libname = "rust_native" // 编译后的so名字
-    targets = listOf("x86_64", "arm64") // 目标CPU架构
+    targets = listOf("x86_64", "arm64", "x86") // 目标CPU架构
     profile = "release"
 //    profile = "debug"
 }
@@ -61,7 +61,7 @@ cargo {
 tasks.configureEach(object : Action<Task> {
     override fun execute(task: Task) {
         if ((task.name == "javaPreCompileDebug" || task.name == "javaPreCompileRelease")) {
-            task.setDependsOn(listOf("cargoBuildArm64", "cargoBuildX86_64"))
+            task.setDependsOn(listOf("cargoBuildArm64", "cargoBuildX86_64", "cargoBuildX86"))
         }
     }
 })
