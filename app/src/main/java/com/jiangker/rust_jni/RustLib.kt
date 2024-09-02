@@ -1,7 +1,7 @@
 package com.jiangker.rust_jni
 
 object RustLib {
-    external fun stringFromJNI(): String
+    external fun writeLog(path: String, log: String)
 
     init {
         System.loadLibrary("rust_native")

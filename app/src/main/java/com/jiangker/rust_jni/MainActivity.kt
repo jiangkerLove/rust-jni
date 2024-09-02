@@ -1,5 +1,6 @@
 package com.jiangker.rust_jni
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,6 +16,12 @@ import com.jiangker.rust_jni.ui.theme.RustjniTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        RustLib.writeLog(
+            this@MainActivity.getDir(
+                "log",
+                Context.MODE_PRIVATE
+            ).path + "/data.log", "new this day log"
+        )
         setContent {
             RustjniTheme {
                 // A surface container using the 'background' color from the theme
@@ -22,7 +29,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting(RustLib.stringFromJNI())
+                    Greeting(
+                        "word"
+                    )
                 }
             }
         }
